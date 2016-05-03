@@ -15,6 +15,8 @@ public class Result {
     int exit_code;
     String output_buffer;
     DataInputStream input_stream;
+    int sizebuffer;
+
 
     public DataInputStream getInput_stream() {
         return input_stream;
@@ -42,6 +44,14 @@ public class Result {
 
     public void setExit_code(int exit_code) {
         this.exit_code = exit_code;
+    }
+
+    void setSizeBuffer(int sizes) {
+        this.sizebuffer= sizes;
+    }
+
+    public int getSizebuffer() {
+        return sizebuffer;
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package gvirtusfe;
 
+import javax.xml.bind.DatatypeConverter;
+
 /**
  *
  * @author cferraro
@@ -38,6 +40,50 @@ public class Buffer {
         mLenght+=Integer.SIZE/8;
         mBackOffset=mLenght;
     }
+     
+      public void Add(long item){
+        byte[] bites = {(byte)item, (byte)0, (byte)0, (byte)0,(byte)0, (byte)0, (byte)0,(byte)0 };
+        mpBuffer+=javax.xml.bind.DatatypeConverter.printHexBinary(bites);
+        mLenght+=Long.SIZE/8;
+        mBackOffset=mLenght;
+    }
+      
+      public void Add(String item){
+        byte[] bites = DatatypeConverter.parseHexBinary(item);
+        mpBuffer+=javax.xml.bind.DatatypeConverter.printHexBinary(bites);
+        mLenght+=bites.length;
+        mBackOffset=mLenght;
+    }
+      
+     public void Add(float[] item){
+//         byte bites[] = new byte[item.length*4];
+         for (int i = 0 ; i < item.length;i++){             
+                String s = String.format("%8s", Integer.toHexString(Float.floatToRawIntBits(item[i]))).replace(' ', '0');
+                StringBuilder out2= new StringBuilder();
+                String ss="";
+                for (int j = s.length()-1 ; j > 0; j-=2) {
+                    String str = s.substring(j-1, j+1);
+                    out2.append(str);
+                    ss=out2.toString();
+                }
+                 mpBuffer+= ss;
+         }
+//        mpBuffer+=javax.xml.bind.DatatypeConverter.printHexBinary(bites);
+        mLenght+=Long.SIZE/8 * item.length;
+        mBackOffset=mLenght;
+    }
+    public void Add(int[] item){
+//         byte bites[] = new byte[item.length*4];
+        Add(item.length*4);
+        
+        
+         for (int i = 0 ; i < item.length;i++){             
+                AddInt(item[i]);
+         }
+        mLenght+=Integer.SIZE/8 * item.length;
+        mBackOffset=mLenght;
+    }
+     
       public void AddInt(int item){
         byte[] bites = {(byte) item, (byte)0, (byte)0, (byte)0}; 
         mpBuffer+= javax.xml.bind.DatatypeConverter.printHexBinary(bites);
@@ -73,6 +119,14 @@ public class Buffer {
         mBackOffset=mLenght;
         
         
+    }
+
+    void AddByte(int i) {
+       byte[] bites =new byte[1];
+       bites[0]=(byte)i;
+       mpBuffer+=javax.xml.bind.DatatypeConverter.printHexBinary(bites);
+       mLenght+=bites.length;
+       mBackOffset=mLenght;
     }
     
 }

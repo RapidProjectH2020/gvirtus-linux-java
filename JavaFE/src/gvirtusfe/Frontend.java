@@ -39,16 +39,41 @@ public final class Frontend {
         
     }
     
-   
     public int Execute(String routine,Buffer input_buffer,Result res) throws IOException{
+
+            for (int i =0; i< routine.length();i++)this.outputStream.writeByte(routine.charAt(i));
+            this.outputStream.writeByte(0);
+            long size = input_buffer.Size()/2;
+            byte[] bits = this.longToByteArray(size);
+            for (int i =0; i< bits.length;i++){
+                this.outputStream.write(bits[i] & 0xFF);
+            }
+           
+             byte[] bytes2 = DatatypeConverter.parseHexBinary(input_buffer.GetString());
+           
+             for (int i =0; i< bytes2.length;i++){
+                this.outputStream.write(bytes2[i] & 0xFF);
+            }
+            int message = this.in.readByte();
+            this.in.readByte();
+            this.in.readByte();
+            this.in.readByte();
+            res.setExit_code(message);
+            System.out.println("Exit code of last function is: "+message);
+            int sizes = (int) this.in.readByte();
+            res.setSizeBuffer(sizes);
+            for (int i =0 ; i< 7; i++) this.in.readByte();
+            res.setInput_stream(this.in);
+            return 0;
+    }
+   
+    public int ExecuteMultiThread(String routine,Buffer input_buffer,Result res) throws IOException{
 
             for (int i =0; i< routine.length();i++)this.outputStream.writeByte(routine.charAt(i));
             this.outputStream.writeByte(0);
             this.clientSocket = new Socket(this.serverIpAddress,9998);
             this.clientIn = new DataInputStream(this.clientSocket.getInputStream());
             this.clientOutputStream =  new DataOutputStream(this.clientSocket.getOutputStream());
-            
-                   
             long size = input_buffer.Size()/2;
             byte[] bits = this.longToByteArray(size);
             for (int i =0; i< bits.length;i++){

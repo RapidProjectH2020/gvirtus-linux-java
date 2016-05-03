@@ -23,6 +23,7 @@ public class CudaRt_device {
         b.AddPointer(0);
         String outputbuffer = "";
         fe.Execute("cudaGetDeviceCount",b,res);
+       //fe.ExecuteMultiThread("cudaGetDeviceCount",b,res);
         int sizeType = res.getInput_stream().readByte();
         for (int i =0 ; i< 7;i++) res.getInput_stream().readByte();
         for (int i =0; i<sizeType;i++){
@@ -51,6 +52,7 @@ public class CudaRt_device {
         b.AddInt(peers);
         String outputbuffer="";
         fe.Execute("cudaDeviceCanAccessPeer",b,res);
+//        fe.ExecuteMultiThread("cudaDeviceCanAccessPeer",b,res);
         int sizeType = res.getInput_stream().readByte();
         for (int i =0 ; i< 7;i++) res.getInput_stream().readByte();
         for (int i =0; i<sizeType;i++){
@@ -78,6 +80,7 @@ public class CudaRt_device {
        b.AddPointer(0);
        String outputbuffer = "";
        fe.Execute("cudaDriverGetVersion",b,res);
+//       fe.ExecuteMultiThread("cudaDriverGetVersion",b,res);
        int sizeType = res.getInput_stream().readByte();
        for (int i =0 ; i< 7;i++) res.getInput_stream().readByte();
        for (int i =0; i<sizeType;i++){
@@ -96,8 +99,7 @@ public class CudaRt_device {
                         }
                    outputbuffer = String.valueOf(Integer.parseInt(out2.toString(),16));
                }
-
-       return Integer.valueOf(outputbuffer);
+        return Integer.valueOf(outputbuffer);
    }
 
     public int cudaRuntimeGetVersion(Frontend fe, Result res) throws IOException{
@@ -106,6 +108,7 @@ public class CudaRt_device {
         b.AddPointer(0);
         String outputbuffer = "";
         fe.Execute("cudaRuntimeGetVersion",b,res);
+//        fe.ExecuteMultiThread("cudaRuntimeGetVersion",b,res);
         int sizeType = res.getInput_stream().readByte();
         for (int i =0 ; i< 7;i++) res.getInput_stream().readByte();
          for (int i =0; i<sizeType;i++){
@@ -132,6 +135,7 @@ public class CudaRt_device {
         Buffer b = new Buffer();
         b.Add(device);
         fe.Execute("cudaSetDevice",b,res);
+ //       fe.ExecuteMultiThread("cudaSetDevice",b,res);
         return 0;
     }
     
@@ -169,26 +173,27 @@ public class CudaRt_device {
     public void cudaDeviceReset(Frontend fe,Result res) throws IOException{
         Buffer b = new Buffer();
         fe.Execute("cudaDeviceReset", b, res);
+        //fe.ExecuteMultiThread("cudaDeviceReset", b, res);
+
     }
     
     
     private int getInt (Result res) throws IOException{
         
-    StringBuilder output = new StringBuilder();
-           for (int i =0; i< 4;i++){
+        StringBuilder output = new StringBuilder();
+        for (int i =0; i< 4;i++){
             byte bit = res.getInput_stream().readByte();
-           int a = bit & 0xFF;
+            int a = bit & 0xFF;
             if (a==0){
                 output.insert(0,Integer.toHexString(a));
                 output.insert(0,Integer.toHexString(a));
             }
             else{ 
-            output.insert(0,Integer.toHexString(a));
+                output.insert(0,Integer.toHexString(a));
             }
         }
         return Integer.parseInt(output.toString(),16);
-        
-    
+
     }
    
     private long getLong (Result res) throws IOException{
@@ -205,7 +210,6 @@ public class CudaRt_device {
             output.insert(0,Integer.toHexString(a));
             }
         }
-    
     return Long.parseLong(output.toString(),16);
     }
     
@@ -218,6 +222,7 @@ public class CudaRt_device {
         b.AddStruct(struct);
         b.AddInt(device);
         fe.Execute("cudaGetDeviceProperties", b,res);
+//        fe.ExecuteMultiThread("cudaGetDeviceProperties", b,res);
         int sizeType = 640;
         for (int i =0; i<8 ;i++){
              res.getInput_stream().readByte();
@@ -236,7 +241,6 @@ public class CudaRt_device {
         struct.name=output.toString();
         
         struct.totalGlobalMem=this.getLong(res);
-//        System.out.println("il valore di totalGlobalMem è "+struct.totalGlobalMem);
         
         struct.sharedMemPerBlock=this.getLong(res);
 //        System.out.println("il valore di sharedMemPerBlock è "+ struct.sharedMemPerBlock);
@@ -359,7 +363,7 @@ public class CudaRt_device {
         struct.managedMemory=this.getInt(res);
         struct.isMultiGpuBoard=this.getInt(res);
         struct.multiGpuBoardGroupID=this.getInt(res);
-        
+        this.getInt(res); //è in più da capire il perchè
         
 //        System.out.println("il valore di warpSize è "+ struct.warpSize);
 //        

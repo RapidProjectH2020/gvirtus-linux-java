@@ -237,41 +237,25 @@ public class CudaRt_device {
               String str = outbuffer.substring(i, i+2);
               output.append((char)Integer.parseInt(str, 16));
         }
-//        System.out.println("il nome del device è "+ output.toString());
-        struct.name=output.toString();
-        
+        struct.name=output.toString();   
         struct.totalGlobalMem=this.getLong(res);
-        
         struct.sharedMemPerBlock=this.getLong(res);
-//        System.out.println("il valore di sharedMemPerBlock è "+ struct.sharedMemPerBlock);
         struct.regsPerBlock=this.getInt(res);
-//        System.out.println("il valore di regsPerBLock è "+struct.regsPerBlock );
-        
         struct.warpSize=this.getInt(res);
-        
         struct.memPitch=this.getLong(res);
-        
-        
         struct.maxThreadsPerBlock= this.getInt(res);
-        
         struct.maxThreadsDim[0]= this.getInt(res);
         struct.maxThreadsDim[1]= this.getInt(res); 
         struct.maxThreadsDim[2]= this.getInt(res);
-        
         struct.maxGridSize[0]= this.getInt(res);
         struct.maxGridSize[1]= this.getInt(res); 
         struct.maxGridSize[2]= this.getInt(res);
-        
         struct.clockRate= this.getInt(res); //check
         struct.totalConstMem= this.getLong(res);
-        
         struct.major= this.getInt(res);
         struct.minor= this.getInt(res);
-        
         struct.textureAlignment= this.getLong(res);
         struct.texturePitchAlignment= this.getLong(res); //check
-
-        
         struct.deviceOverlap= this.getInt(res);
         struct.multiProcessorCount= this.getInt(res);
         struct.kernelExecTimeoutEnabled= this.getInt(res);
@@ -281,66 +265,44 @@ public class CudaRt_device {
         struct.maxTexture1D= this.getInt(res);
         struct.maxTexture1DMipmap= this.getInt(res);
         struct.maxTexture1DLinear= this.getInt(res); //check
-        
-        
         struct.maxTexture2D[0]= this.getInt(res);
         struct.maxTexture2D[1]= this.getInt(res); 
-
         struct.maxTexture2DMipmap[0]= this.getInt(res);
         struct.maxTexture2DMipmap[1]= this.getInt(res);
-        
         struct.maxTexture2DLinear[0]= this.getInt(res);
         struct.maxTexture2DLinear[1]= this.getInt(res); 
-        struct.maxTexture2DLinear[2]= this.getInt(res);
-        
+        struct.maxTexture2DLinear[2]= this.getInt(res);  
         struct.maxTexture2DGather[0]= this.getInt(res);
         struct.maxTexture2DGather[1]= this.getInt(res); 
-
         struct.maxTexture3D[0]= this.getInt(res);
         struct.maxTexture3D[1]= this.getInt(res); 
-        struct.maxTexture3D[2]= this.getInt(res);
-        
+        struct.maxTexture3D[2]= this.getInt(res);   
         struct.maxTexture3DAlt[0]= this.getInt(res);
         struct.maxTexture3DAlt[1]= this.getInt(res); 
-        struct.maxTexture3DAlt[2]= this.getInt(res);
-        
+        struct.maxTexture3DAlt[2]= this.getInt(res);  
         struct.maxTextureCubemap= this.getInt(res);
-
         struct.maxTexture1DLayered[0]= this.getInt(res);
-        struct.maxTexture1DLayered[1]= this.getInt(res);
-        
+        struct.maxTexture1DLayered[1]= this.getInt(res);  
         struct.maxTexture2DLayered[0]= this.getInt(res);
         struct.maxTexture2DLayered[1]= this.getInt(res); 
-        struct.maxTexture2DLayered[2]= this.getInt(res);
-        
+        struct.maxTexture2DLayered[2]= this.getInt(res);   
         struct.maxTextureCubemapLayered[0]= this.getInt(res);
         struct.maxTextureCubemapLayered[1]= this.getInt(res); 
-        
         struct.maxSurface1D=this.getInt(res);
-        
-        
         struct.maxSurface2D[0]=this.getInt(res);
         struct.maxSurface2D[1]=this.getInt(res);
-        
         struct.maxSurface3D[0]=this.getInt(res);
         struct.maxSurface3D[1]=this.getInt(res); 
         struct.maxSurface3D[2]=this.getInt(res);
-        
         struct.maxSurface1DLayered[0]=this.getInt(res);
-        struct.maxSurface1DLayered[1]=this.getInt(res); 
-                
+        struct.maxSurface1DLayered[1]=this.getInt(res);    
         struct.maxSurface2DLayered[0]=this.getInt(res);
         struct.maxSurface2DLayered[1]=this.getInt(res); 
-        struct.maxSurface2DLayered[2]=this.getInt(res);
-        
+        struct.maxSurface2DLayered[2]=this.getInt(res);  
         struct.maxSurfaceCubemap=this.getInt(res);
-        
-        
         struct.maxSurfaceCubemapLayered[0]=this.getInt(res);
         struct.maxSurfaceCubemapLayered[1]=this.getInt(res); 
-        
-        struct.surfaceAlignment=this.getLong(res);
-        
+        struct.surfaceAlignment=this.getLong(res);    
         struct.concurrentKernels=this.getInt(res);
         struct.ECCEnabled=this.getInt(res);
         struct.pciBusID=this.getInt(res);
@@ -356,137 +318,12 @@ public class CudaRt_device {
         struct.streamPrioritiesSupported=this.getInt(res);
         struct.globalL1CacheSupported=this.getInt(res);
         struct.localL1CacheSupported=this.getInt(res);
-
         struct.sharedMemPerMultiprocessor=this.getLong(res);
-
         struct.regsPerMultiprocessor=this.getInt(res);
         struct.managedMemory=this.getInt(res);
         struct.isMultiGpuBoard=this.getInt(res);
         struct.multiGpuBoardGroupID=this.getInt(res);
         this.getInt(res); //è in più da capire il perchè
-        
-//        System.out.println("il valore di warpSize è "+ struct.warpSize);
-//        
-//        System.out.println("il valore di memPitch è "+ struct.memPitch);
-//        
-//        
-//        System.out.println("il valore di maxThreadsPerBlock è "+  struct.maxThreadsPerBlock);
-//        
-//        System.out.println("il valore di maxThreadsDim[0] è "+  struct.maxThreadsDim[0]);
-//        System.out.println("il valore di maxThreadsDim[1] è "+  struct.maxThreadsDim[1]); 
-//        System.out.println("il valore di maxThreadsDim[2] è "+  struct.maxThreadsDim[2]);
-//        
-//              
-//        System.out.println("il valore di maxGridSize[0] è "+  struct.maxGridSize[0]);
-//        System.out.println("il valore di maxGridSize[1] è "+  struct.maxGridSize[1]); 
-//        System.out.println("il valore di maxGridSize[2] è "+  struct.maxGridSize[2]);
-//        
-//        System.out.println("il valore di clockRate è "+  struct.clockRate); //check
-//        System.out.println("il valore di totalConstMem è "+  struct.totalConstMem);
-//        
-//        System.out.println("il valore di major è "+  struct.major);
-//        System.out.println("il valore di minor è "+  struct.minor);
-//     
-//                
-//        System.out.println("il valore di deviceOverlap è "+  struct.deviceOverlap);
-//        System.out.println("il valore di multiProcessorCount è "+  struct.multiProcessorCount);
-//        System.out.println("il valore di kernelExecTimeoutEnabled è "+  struct.kernelExecTimeoutEnabled);
-//        System.out.println("il valore di integrated è "+  struct.integrated);
-//        System.out.println("il valore di canMapHostMemory è "+  struct.canMapHostMemory);
-//        
-//        System.out.println("il valore di computeMode è "+  struct.computeMode);
-//        System.out.println("il valore di maxTexture1D è "+  struct.maxTexture1D);
-//        System.out.println("il valore di maxTexture1DMipmap è "+  struct.maxTexture1DMipmap);
-//        System.out.println("il valore di maxTexture1DLinear è "+  struct.maxTexture1DLinear); //check
-//        
-//        
-//        System.out.println("il valore di maxTexture2D[0] è "+  struct.maxTexture2D[0]);
-//        System.out.println("il valore di maxTexture2D[1] è "+  struct.maxTexture2D[1]); 
-//
-//        System.out.println("il valore di maxTexture2DMipmap[0] è "+  struct.maxTexture2DMipmap[0]);
-//        System.out.println("il valore di maxTexture2DMipmap[1] è "+  struct.maxTexture2DMipmap[1]);
-//        
-//        
-//              
-//        System.out.println("il valore di maxTexture2DLinear[0] è "+  struct.maxTexture2DLinear[0]);
-//        System.out.println("il valore di maxTexture2DLinear[1] è "+  struct.maxTexture2DLinear[1]); 
-//        System.out.println("il valore di maxTexture2DLinear[2] è "+  struct. maxTexture2DLinear[2]);
-//        
-//        System.out.println("il valore di maxTexture2DGather[0] è "+  struct.maxTexture2DGather[0]);
-//        System.out.println("il valore di maxTexture2DGather[1] è "+  struct.maxTexture2DGather[1]); 
-//
-//        System.out.println("il valore di maxTexture3D[0] è "+  struct.maxTexture3D[0]);
-//        System.out.println("il valore di maxTexture3D[1] è "+  struct.maxTexture3D[1]); 
-//        System.out.println("il valore di maxTexture3D[2] è "+  struct.maxTexture3D[2]);
-//        
-//        System.out.println("il valore di maxTexture3DAlt[0] è "+  struct.maxTexture3DAlt[0]);
-//        System.out.println("il valore di maxTexture3DAlt[1] è "+  struct.maxTexture3DAlt[1]); 
-//        System.out.println("il valore di maxTexture3DAlt[2] è "+  struct.maxTexture3DAlt[2]);
-//          System.out.println("il valore di maxTextureCubemap è "+  struct.maxTextureCubemap);
-//
-//        System.out.println("il valore di maxTexture1DLayered[0] è "+  struct.maxTexture1DLayered[0]);
-//        System.out.println("il valore di maxTexture1DLayered[1] è "+  struct.maxTexture1DLayered[1]);
-//        
-//        System.out.println("il valore di maxTexture2DLayered[0] è "+  struct.maxTexture2DLayered[0]);
-//        System.out.println("il valore di maxTexture2DLayered[1] è "+  struct.maxTexture2DLayered[1]); 
-//        System.out.println("il valore di maxTexture2DLayered[2] è "+  struct.maxTexture2DLayered[2]);
-//        
-//        System.out.println("il valore di maxTextureCubemapLayered[0] è "+  struct.maxTextureCubemapLayered[0]);
-//        System.out.println("il valore di maxTextureCubemapLayered[1] è "+  struct.maxTextureCubemapLayered[1]); 
-//        
-//                
-//        System.out.println("il valore di maxSurface1D è "+  struct.maxSurface1D);
-//        
-//        
-//        System.out.println("il valore di maxSurface2D[0] è "+  struct.maxSurface2D[0] );
-//        System.out.println("il valore di maxSurface2D[1] è "+  struct.maxSurface2D[1]);
-//        
-//        System.out.println("il valore di maxSurface3D[0] è "+  struct.maxSurface3D[0]);
-//        System.out.println("il valore di maxSurface3D[1] è "+  struct.maxSurface3D[1]); 
-//        System.out.println("il valore di maxSurface3D[2] è "+  struct.maxSurface3D[2]);
-//        
-//        System.out.println("il valore di maxSurface1DLayered[0] è "+  struct.maxSurface1DLayered[0]);
-//        System.out.println("il valore di maxSurface1DLayered[1] è "+  struct.maxSurface1DLayered[1]); 
-//                
-//        System.out.println("il valore di maxSurface2DLayered[0] è "+  struct.maxSurface2DLayered[0]);
-//        System.out.println("il valore di maxSurface2DLayered[1] è "+  struct.maxSurface2DLayered[1]); 
-//        System.out.println("il valore di maxSurface2DLayered[2] è "+  struct.maxSurface2DLayered[2]);
-//        
-//        
-//        System.out.println("il valore di maxSurfaceCubemap è "+  struct.maxSurfaceCubemap);
-//        
-//        
-//        System.out.println("il valore di maxSurfaceCubemapLayered[0] è "+  struct.maxSurfaceCubemapLayered[0]);
-//        System.out.println("il valore di maxSurfaceCubemapLayered[1] è "+  struct.maxSurfaceCubemapLayered[1]); 
-//        
-//        System.out.println("il valore di surfaceAlignment è "+  struct.surfaceAlignment);
-//        
-//        	System.out.println("il valore di concurrentKernels è "+  struct.concurrentKernels);
-//        System.out.println("il valore di ECCEnabled è "+  struct.ECCEnabled);
-//        System.out.println("il valore di pciBusID è "+  struct.pciBusID);
-//        System.out.println("il valore di pciDeviceID è "+  struct.pciDeviceID);
-//        System.out.println("il valore di pciDomainID è "+  struct.pciDomainID);
-//        System.out.println("il valore di tccDriver è "+  struct.tccDriver);
-//        System.out.println("il valore di asyncEngineCount è "+  struct.asyncEngineCount);
-//        
-//              System.out.println("il valore di unifiedAddressing è "+  struct.unifiedAddressing);
-//        System.out.println("il valore di memoryClockRate è "+  struct.memoryClockRate);
-//        
-//        
-//        System.out.println("il valore di memoryBusWidth è "+  struct.memoryBusWidth);
-//        System.out.println("il valore di l2CacheSize è "+  struct.l2CacheSize);
-//        System.out.println("il valore di maxThreadsPerMultiProcessor è "+  struct.maxThreadsPerMultiProcessor);
-//        System.out.println("il valore di streamPrioritiesSupported è "+  struct.streamPrioritiesSupported);
-//        System.out.println("il valore di globalL1CacheSupported è "+  struct.globalL1CacheSupported);
-//        System.out.println("il valore di localL1CacheSupported è "+  struct.localL1CacheSupported);
-//
-//        System.out.println("il valore di sharedMemPerMultiprocessor è "+  struct.sharedMemPerMultiprocessor);
-//
-//        System.out.println("il valore di regsPerMultiprocessor è "+  struct.regsPerMultiprocessor);
-//        System.out.println("il valore di managedMemory è "+  struct.managedMemory);
-//        System.out.println("il valore di isMultiGpuBoard è "+  struct.isMultiGpuBoard);
-//        System.out.println("il valore di multiGpuBoardGroupID è "+  struct.multiGpuBoardGroupID);
-//        
         return struct;
     }
     
@@ -554,14 +391,7 @@ public class CudaRt_device {
         int    managedMemory=0;              /**< Device supports allocating managed memory on this system */
         int    isMultiGpuBoard=0;            /**< Device is on a multi-GPU board */
         int    multiGpuBoardGroupID=0;       /**< Unique identifier for a group of devices on the same multi-GPU board */
-       
-    
-    public cudaDeviceProp() {
-        
-        }
-
-    
-        
+          
+    public cudaDeviceProp() {}
     }
-
 }

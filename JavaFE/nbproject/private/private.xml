@@ -2,12 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/cferraro/GV/gvirtus-devel/JavaFE/src/gvirtusfe/CudaDr_module.java</file>
-            <file>file:/home/cferraro/GV/gvirtus-devel/JavaFE/src/gvirtusfe/CudaRt_device.java</file>
-            <file>file:/home/cferraro/GV/gvirtus-devel/JavaFE/src/gvirtusfe/CudaRt_memory.java</file>
-            <file>file:/home/cferraro/GV/gvirtus-devel/JavaFE/src/gvirtusfe/Frontend.java</file>
-            <file>file:/home/cferraro/GV/gvirtus-devel/JavaFE/src/gvirtusfe/GVirtuSFE.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

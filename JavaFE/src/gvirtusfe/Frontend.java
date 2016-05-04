@@ -24,10 +24,10 @@ public final class Frontend {
     DataOutputStream outputStream,clientOutputStream;
     DataInputStream in,clientIn;
     
-    public Frontend(String url) {
+    public Frontend(String url, int port) {
          
         this.serverIpAddress = url;
-        this.port=9991;
+        this.port=port;
         try {
             this.socket = new Socket(this.serverIpAddress,this.port);
             this.outputStream = new DataOutputStream(this.socket.getOutputStream());

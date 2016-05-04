@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+
 /**
  * 
  * @author Carmine Ferraro, Valentina Pelliccia
@@ -17,6 +18,9 @@ import java.nio.file.Paths;
  */
 
 public class GVirtuSFE {
+    
+    static String ip="127.0.0.1"; //change localhost with remote host if necessary
+    static int port = 9991;
     
     public static void main(String[] args) throws IOException {
        
@@ -42,7 +46,7 @@ public class GVirtuSFE {
     public static void matrixMul() throws IOException{
 
         System.out.println( "matrixMulDrv (Driver API)");
-        Frontend FE = new Frontend("127.0.0.1");
+        Frontend FE = new Frontend(ip,port);
         Result res = new Result();
         int CUdevice=0;
         CudaDr_device dr = new CudaDr_device();
@@ -128,7 +132,7 @@ public class GVirtuSFE {
     
     public static void deviceQuery() throws IOException{
         
-        Frontend FE = new Frontend("127.0.0.1");
+        Frontend FE = new Frontend(ip,port);
         Result res = new Result();
         CudaRt_device dv = new CudaRt_device();
         System.out.println("Starting...\nCUDA Device Query (Runtime API) version (CUDART static linking)\n\n");
@@ -185,7 +189,7 @@ public class GVirtuSFE {
     
     public static void runtimeMemoryMalloc() throws IOException{
         
-        Frontend FE = new Frontend("127.0.0.1");
+        Frontend FE = new Frontend(ip,port);
         Result res = new Result();
         CudaRt_memory mem = new CudaRt_memory();
         String pointerA = mem.cudaMalloc(FE, res, 25);

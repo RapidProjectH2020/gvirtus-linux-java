@@ -26,7 +26,7 @@ CudaDr_memory.lo: CudaDr_memory.cpp /usr/include/stdc-predef.h \
  /usr/local/cuda/include/texture_types.h \
  /usr/local/cuda/include/vector_types.h \
  /usr/local/cuda/include/cuda_device_runtime_api.h \
- /home/cferraro/Github/GVirtuS/gvirtus.cudadr/util/CudaUtil.h \
+ /home/cferraro/Github/gvirtus-linux-java/gvirtus.cudadr/util/CudaUtil.h \
  /usr/include/c++/4.8/iostream /usr/include/c++/4.8/ostream \
  /usr/include/c++/4.8/ios /usr/include/c++/4.8/iosfwd \
  /usr/include/c++/4.8/bits/stringfwd.h \
@@ -223,7 +223,7 @@ CudaDrFrontend.h:
 
 /usr/local/cuda/include/cuda_device_runtime_api.h:
 
-/home/cferraro/Github/GVirtuS/gvirtus.cudadr/util/CudaUtil.h:
+/home/cferraro/Github/gvirtus-linux-java/gvirtus.cudadr/util/CudaUtil.h:
 
 /usr/include/c++/4.8/iostream:
 

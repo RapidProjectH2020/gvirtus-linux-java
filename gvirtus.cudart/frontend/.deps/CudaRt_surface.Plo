@@ -102,7 +102,7 @@ CudaRt_surface.lo: CudaRt_surface.cpp /usr/include/stdc-predef.h \
  /usr/local/cuda/include/texture_types.h \
  /usr/local/cuda/include/vector_types.h \
  /usr/local/cuda/include/cuda_device_runtime_api.h \
- /home/cferraro/Github/GVirtuS/gvirtus.cudart/util/CudaUtil.h \
+ /home/cferraro/Github/gvirtus-linux-java/gvirtus.cudart/util/CudaUtil.h \
  /usr/include/c++/4.8/cstdlib /usr/local/cuda/include/fatBinaryCtl.h \
  /usr/local/cuda/include/fatbinary.h /usr/local/cuda/include/fatbinary.h \
  /usr/local/cuda/include/texture_types.h \
@@ -414,7 +414,7 @@ CudaRt.h:
 
 /usr/local/cuda/include/cuda_device_runtime_api.h:
 
-/home/cferraro/Github/GVirtuS/gvirtus.cudart/util/CudaUtil.h:
+/home/cferraro/Github/gvirtus-linux-java/gvirtus.cudart/util/CudaUtil.h:
 
 /usr/include/c++/4.8/cstdlib:
 

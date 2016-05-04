@@ -22,7 +22,7 @@ CudaDrFrontend.lo: CudaDrFrontend.cpp /usr/include/stdc-predef.h \
  /usr/local/cuda/include/texture_types.h \
  /usr/local/cuda/include/vector_types.h \
  /usr/local/cuda/include/cuda_device_runtime_api.h \
- /home/cferraro/Github/GVirtuS/gvirtus.cudadr/util/CudaUtil.h \
+ /home/cferraro/Github/gvirtus-linux-java/gvirtus.cudadr/util/CudaUtil.h \
  /usr/include/c++/4.8/iostream \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/os_defines.h \
@@ -204,7 +204,7 @@ CudaDrFrontend.h:
 
 /usr/local/cuda/include/cuda_device_runtime_api.h:
 
-/home/cferraro/Github/GVirtuS/gvirtus.cudadr/util/CudaUtil.h:
+/home/cferraro/Github/gvirtus-linux-java/gvirtus.cudadr/util/CudaUtil.h:
 
 /usr/include/c++/4.8/iostream:
 

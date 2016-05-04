@@ -66,37 +66,37 @@ public final class Frontend {
             res.setInput_stream(this.in);
             return 0;
     }
-   
-    public int ExecuteMultiThread(String routine,Buffer input_buffer,Result res) throws IOException{
-
-            for (int i =0; i< routine.length();i++)this.outputStream.writeByte(routine.charAt(i));
-            this.outputStream.writeByte(0);
-            this.clientSocket = new Socket(this.serverIpAddress,9998);
-            this.clientIn = new DataInputStream(this.clientSocket.getInputStream());
-            this.clientOutputStream =  new DataOutputStream(this.clientSocket.getOutputStream());
-            long size = input_buffer.Size()/2;
-            byte[] bits = this.longToByteArray(size);
-            for (int i =0; i< bits.length;i++){
-                this.clientOutputStream.write(bits[i] & 0xFF);
-            }
-           
-             byte[] bytes2 = DatatypeConverter.parseHexBinary(input_buffer.GetString());
-           
-             for (int i =0; i< bytes2.length;i++){
-                this.clientOutputStream.write(bytes2[i] & 0xFF);
-            }
-
-            int message = this.clientIn.readByte();
-            this.clientIn.readByte();
-            this.clientIn.readByte();
-            this.clientIn.readByte();
-            res.setExit_code(message);
-            long size_buffer = this.clientIn.readByte();
-            for (int i =0 ; i< 7; i++) this.clientIn.readByte();
-            res.setInput_stream(this.clientIn);
-            return 0;
-    }
-    
+//   
+//    public int ExecuteMultiThread(String routine,Buffer input_buffer,Result res) throws IOException{
+//
+//            for (int i =0; i< routine.length();i++)this.outputStream.writeByte(routine.charAt(i));
+//            this.outputStream.writeByte(0);
+//            this.clientSocket = new Socket(this.serverIpAddress,9998);
+//            this.clientIn = new DataInputStream(this.clientSocket.getInputStream());
+//            this.clientOutputStream =  new DataOutputStream(this.clientSocket.getOutputStream());
+//            long size = input_buffer.Size()/2;
+//            byte[] bits = this.longToByteArray(size);
+//            for (int i =0; i< bits.length;i++){
+//                this.clientOutputStream.write(bits[i] & 0xFF);
+//            }
+//           
+//             byte[] bytes2 = DatatypeConverter.parseHexBinary(input_buffer.GetString());
+//           
+//             for (int i =0; i< bytes2.length;i++){
+//                this.clientOutputStream.write(bytes2[i] & 0xFF);
+//            }
+//
+//            int message = this.clientIn.readByte();
+//            this.clientIn.readByte();
+//            this.clientIn.readByte();
+//            this.clientIn.readByte();
+//            res.setExit_code(message);
+//            long size_buffer = this.clientIn.readByte();
+//            for (int i =0 ; i< 7; i++) this.clientIn.readByte();
+//            res.setInput_stream(this.clientIn);
+//            return 0;
+//    }
+//    
     public void writeLong(DataOutputStream os, long l) throws IOException {
         os.write((byte) l);
         os.write((byte) (l >> 56));

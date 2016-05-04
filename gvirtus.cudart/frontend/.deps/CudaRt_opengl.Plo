@@ -40,7 +40,7 @@ CudaRt_opengl.lo: CudaRt_opengl.cpp /usr/include/stdc-predef.h CudaRt.h \
  /usr/local/cuda/include/texture_types.h \
  /usr/local/cuda/include/vector_types.h \
  /usr/local/cuda/include/cuda_device_runtime_api.h \
- /home/cferraro/Github/GVirtuS/gvirtus.cudart/util/CudaUtil.h \
+ /home/cferraro/Github/gvirtus-linux-java/gvirtus.cudart/util/CudaUtil.h \
  /usr/include/c++/4.8/iostream \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/os_defines.h \
@@ -263,7 +263,7 @@ CudaRt.h:
 
 /usr/local/cuda/include/cuda_device_runtime_api.h:
 
-/home/cferraro/Github/GVirtuS/gvirtus.cudart/util/CudaUtil.h:
+/home/cferraro/Github/gvirtus-linux-java/gvirtus.cudart/util/CudaUtil.h:
 
 /usr/include/c++/4.8/iostream:
 

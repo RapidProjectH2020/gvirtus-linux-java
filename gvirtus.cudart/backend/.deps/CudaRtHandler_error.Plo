@@ -146,7 +146,7 @@ CudaRtHandler_error.lo: CudaRtHandler_error.cpp \
  /home/cferraro/Github/opt/include/gvirtus/Observable.h \
  /home/cferraro/Github/opt/include/gvirtus/Observer.h \
  /home/cferraro/Github/opt/include/gvirtus/Result.h \
- /home/cferraro/Github/GVirtuS/gvirtus.cudart/util/CudaUtil.h \
+ /home/cferraro/Github/gvirtus-linux-java/gvirtus.cudart/util/CudaUtil.h \
  /usr/local/cuda/include/fatBinaryCtl.h \
  /usr/local/cuda/include/fatbinary.h /usr/local/cuda/include/fatbinary.h \
  /usr/local/cuda/include/texture_types.h \
@@ -517,7 +517,7 @@ CudaRtHandler.h:
 
 /home/cferraro/Github/opt/include/gvirtus/Result.h:
 
-/home/cferraro/Github/GVirtuS/gvirtus.cudart/util/CudaUtil.h:
+/home/cferraro/Github/gvirtus-linux-java/gvirtus.cudart/util/CudaUtil.h:
 
 /usr/local/cuda/include/fatBinaryCtl.h:
 

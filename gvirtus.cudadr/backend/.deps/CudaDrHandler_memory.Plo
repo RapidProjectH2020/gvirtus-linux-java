@@ -24,7 +24,7 @@ CudaDrHandler_memory.lo: CudaDrHandler_memory.cpp \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
- /home/cferraro/Github/GVirtuS/gvirtus.cudadr/util/CudaUtil.h \
+ /home/cferraro/Github/gvirtus-linux-java/gvirtus.cudadr/util/CudaUtil.h \
  /usr/include/c++/4.8/iostream \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/4.8/bits/os_defines.h \
@@ -218,7 +218,7 @@ CudaDrHandler_memory.lo: CudaDrHandler_memory.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/stdlib.h:
 
-/home/cferraro/Github/GVirtuS/gvirtus.cudadr/util/CudaUtil.h:
+/home/cferraro/Github/gvirtus-linux-java/gvirtus.cudadr/util/CudaUtil.h:
 
 /usr/include/c++/4.8/iostream:
 

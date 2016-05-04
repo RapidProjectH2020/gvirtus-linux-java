@@ -7,16 +7,17 @@ OS: Ubuntu 10.04 (tested) / 12.04 (tested) / 14.04 (tested)
 CUDA Toolkit: Version 6.5
 
 ## Installation: ##
-1) Clone the GVirtuS main repository
+1) Clone the gvirtus-linux-java main repository
 
-    git clone https://github.com/RapidProjectH2020/GVirtuS.git
+    git clone https://github.com/RapidProjectH2020/gvirtus-linux-java.git
 
-In the directory “GVirtuS” there are three directories named “gvirtus”, “gvirtus.cudart” and "gvirtus.cudadr".
+In the directory “gvirtus-linux-java” there are four directories named “gvirtus”, “gvirtus.cudart”, "gvirtus.cudadr" and "JavaFE".
 
 “gvirtus” contains the framework.
 
 “gvirtus.cudart” and "gvirtus.cudadr" contains the cuda runtime plugin and the cuda driver plugin.
 
+"JavaFE" contains the Java version of Frontend.
 
 2) Launch the installer script indicating the destination folder of the installation (es. "/home/rapid/opt"):
 

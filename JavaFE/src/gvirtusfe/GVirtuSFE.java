@@ -20,12 +20,12 @@ import java.nio.file.Paths;
 public class GVirtuSFE {
     
     static String ip="127.0.0.1"; //change localhost with remote host if necessary
-    static int port = 9991;
+    static int port = 9992;
     
     public static void main(String[] args) throws IOException {
        
-        deviceQuery();
-//        matrixMul();
+//        deviceQuery();
+        matrixMul();
     }
 
     public static float[] constantInit(float[] data, int size, float val){
@@ -96,7 +96,7 @@ public class GVirtuSFE {
         System.out.println("pointer cfunction " + cfunction);
 
         // allocate host memory for matrices A and B
-        int block_size = 16;
+        int block_size = 32; // larger block size is for Fermi and above
         int WA = (4 * block_size); // Matrix A width
         int HA = (6 * block_size); // Matrix A height
         int WB = (4 * block_size); // Matrix B width
@@ -104,25 +104,32 @@ public class GVirtuSFE {
         int WC = WB;  // Matrix C width 
         int HC = HA;  // Matrix C height
         int size_A = WA * HA;
-        
-        
-        
+
         int mem_size_A = Float.SIZE/8 * size_A;
-        float[] h_A = new float[mem_size_A];
-        
+        float[] h_A = new float[size_A];
         int size_B = WB * HB;
         int mem_size_B = Float.SIZE/8 * size_B;
-        float[] h_B = new float[mem_size_B];
+        float[] h_B = new float[size_B];
         float valB = 0.01f;
         h_A = constantInit(h_A,size_A,1.0f);  
         h_B = constantInit(h_B,size_B,valB);
+        CudaDr_memory dr_mem = new CudaDr_memory();
+        // allocate device memory
+        String d_A;
+        d_A = dr_mem.cuMemAlloc(FE,res, mem_size_A);
+        String d_B;
+        d_B = dr_mem.cuMemAlloc(FE,res, mem_size_B);
+        dr_mem.cuMemcpyHtoD(FE,res,d_A,h_A,mem_size_A);
+        dr_mem.cuMemcpyHtoD(FE, res, d_B, h_B, mem_size_B);
         
-//         // allocate device memory
-//        CUdeviceptr d_A;
-//        checkCudaErrors(cuMemAlloc(&d_A, mem_size_A));
-//    CUdeviceptr d_B;
-//    checkCudaErrors(cuMemAlloc(&d_B, mem_size_B));
-//        
+        //allocate device memory for result
+        long size_C = WC * HC;
+        long mem_size_C = Float.SIZE/8 * size_C;
+        String d_C;
+        d_C = dr_mem.cuMemAlloc(FE, res, size_C);
+        
+        
+        
         
         ctx.cuCtxDestroy(FE, res, context);
         

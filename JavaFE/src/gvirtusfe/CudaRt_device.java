@@ -17,7 +17,7 @@ public class CudaRt_device {
     public CudaRt_device() {
     }
     
-    public int cudaGetDeviceCount(Frontend fe, Result res) throws IOException{
+    public int cudaGetDeviceCount(GVirtusFrontend fe, Result res) throws IOException{
 
         Buffer b = new Buffer();
         b.AddPointer(0);
@@ -45,7 +45,7 @@ public class CudaRt_device {
         return Integer.valueOf(outputbuffer);
     }
     
-    public int cudaDeviceCanAccessPeer(Frontend fe,Result res , int device , int peers) throws IOException{
+    public int cudaDeviceCanAccessPeer(GVirtusFrontend fe,Result res , int device , int peers) throws IOException{
         Buffer b = new Buffer();
         b.AddPointer(0);
         b.AddInt(device);
@@ -73,7 +73,7 @@ public class CudaRt_device {
         return Integer.valueOf(outputbuffer);
     }
     
-    public int cudaDriverGetVersion(Frontend fe, Result res) throws IOException{
+    public int cudaDriverGetVersion(GVirtusFrontend fe, Result res) throws IOException{
 
 
        Buffer b = new Buffer();
@@ -102,7 +102,7 @@ public class CudaRt_device {
         return Integer.valueOf(outputbuffer);
    }
 
-    public int cudaRuntimeGetVersion(Frontend fe, Result res) throws IOException{
+    public int cudaRuntimeGetVersion(GVirtusFrontend fe, Result res) throws IOException{
         
         Buffer b = new Buffer();
         b.AddPointer(0);
@@ -130,7 +130,7 @@ public class CudaRt_device {
     }
      
      
-    public int cudaSetDevice(Frontend fe, int device, Result res) throws IOException{
+    public int cudaSetDevice(GVirtusFrontend fe, int device, Result res) throws IOException{
       
         Buffer b = new Buffer();
         b.Add(device);
@@ -139,7 +139,7 @@ public class CudaRt_device {
         return 0;
     }
     
-    public String cudaGetErrorString(Frontend fe, int error, Result res) throws IOException{
+    public String cudaGetErrorString(GVirtusFrontend fe, int error, Result res) throws IOException{
         
         Buffer b = new Buffer();
         b.AddInt(error);
@@ -170,7 +170,7 @@ public class CudaRt_device {
        
     }
     
-    public void cudaDeviceReset(Frontend fe,Result res) throws IOException{
+    public void cudaDeviceReset(GVirtusFrontend fe,Result res) throws IOException{
         Buffer b = new Buffer();
         fe.Execute("cudaDeviceReset", b, res);
         //fe.ExecuteMultiThread("cudaDeviceReset", b, res);
@@ -213,7 +213,7 @@ public class CudaRt_device {
     return Long.parseLong(output.toString(),16);
     }
     
-    public  cudaDeviceProp cudaGetDeviceProperties (Frontend fe, Result res , int device) throws IOException{
+    public  cudaDeviceProp cudaGetDeviceProperties (GVirtusFrontend fe, Result res , int device) throws IOException{
         Buffer b = new Buffer();
         String outbuffer="";
         StringBuilder output = new StringBuilder();

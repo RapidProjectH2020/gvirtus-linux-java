@@ -19,7 +19,7 @@ public class CudaRt_memory {
     
     
     
-     public String cudaMalloc(Frontend fe, Result res, long size) throws IOException{
+     public String cudaMalloc(GVirtusFrontend fe, Result res, long size) throws IOException{
 
         Buffer b = new Buffer();
         b.Add((int) size);
@@ -29,7 +29,7 @@ public class CudaRt_memory {
         return pointer;
     }
      
-     public void cudaMemcpy(Frontend fe, Result res, String dst, float[] src, int count, int kind) throws IOException{
+     public void cudaMemcpy(GVirtusFrontend fe, Result res, String dst, float[] src, int count, int kind) throws IOException{
          
          Buffer b = new Buffer();
          b.Add(dst);

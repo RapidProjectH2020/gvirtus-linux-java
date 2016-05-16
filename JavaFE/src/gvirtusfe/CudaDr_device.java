@@ -16,7 +16,7 @@ public class CudaDr_device {
     public CudaDr_device() {
     }
     
-    public int cuDeviceGet(Frontend fe,Result res, int devID) throws IOException{
+    public int cuDeviceGet(GVirtusFrontend fe,Result res, int devID) throws IOException{
         
         Buffer b = new Buffer();
         b.AddPointer(0);
@@ -46,7 +46,7 @@ public class CudaDr_device {
     }
     
     
-     public String cuDeviceGetName(Frontend fe,Result res, int len, int dev) throws IOException{
+     public String cuDeviceGetName(GVirtusFrontend fe,Result res, int len, int dev) throws IOException{
         
         Buffer b = new Buffer();
         b.AddByte(1);
@@ -82,7 +82,7 @@ public class CudaDr_device {
     }
     
 
-    public int cuDeviceGetCount(Frontend fe, Result res) throws IOException {
+    public int cuDeviceGetCount(GVirtusFrontend fe, Result res) throws IOException {
         
         Buffer b = new Buffer();
         b.AddPointer(0);
@@ -110,7 +110,7 @@ public class CudaDr_device {
         
     }
     
-      public int[] cuDeviceComputeCapability(Frontend fe, Result res,int device) throws IOException {
+      public int[] cuDeviceComputeCapability(GVirtusFrontend fe, Result res,int device) throws IOException {
         
         Buffer b = new Buffer();
         b.AddPointer(0);
@@ -162,7 +162,7 @@ public class CudaDr_device {
         
     }
     
-    public int cuDeviceGetAttribute(Frontend fe, Result res,int attribute, int device) throws IOException{
+    public int cuDeviceGetAttribute(GVirtusFrontend fe, Result res,int attribute, int device) throws IOException{
         Buffer b = new Buffer();
         b.AddPointer(0);
         b.AddInt(attribute);
@@ -191,7 +191,7 @@ public class CudaDr_device {
 
     }
     
-    public long cuDeviceTotalMem(Frontend fe, Result res,int dev ) throws IOException{
+    public long cuDeviceTotalMem(GVirtusFrontend fe, Result res,int dev ) throws IOException{
         
         Buffer b = new Buffer();
         b.AddByte(8);

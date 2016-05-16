@@ -13,7 +13,7 @@ public class CudaDr_module {
     public CudaDr_module() {
     }
     
-    String cuModuleGetFunction(Frontend FE, Result res, String cmodule, String str) throws IOException {
+    String cuModuleGetFunction(GVirtusFrontend FE, Result res, String cmodule, String str) throws IOException {
 
         Buffer b = new Buffer();
         str = str +"\0";
@@ -42,7 +42,7 @@ public class CudaDr_module {
         return pointer;
 
     }
-    public String cuModuleLoadDataEx(Frontend FE,Result res, String ptxSource,int jitNumOptions,int[] jitOptions, long jitOptVals0,char[] jitOptVals1, long jitOptVals2) throws IOException{
+    public String cuModuleLoadDataEx(GVirtusFrontend FE,Result res, String ptxSource,int jitNumOptions,int[] jitOptions, long jitOptVals0,char[] jitOptVals1, long jitOptVals2) throws IOException{
     Buffer b = new Buffer();
     b.AddInt(jitNumOptions);
     b.Add(jitOptions);

@@ -17,7 +17,7 @@ public class CudaDr_context {
     public CudaDr_context() {
     }
     
-    public String cuCtxCreate(Frontend fe, Result res, int flags, int dev) throws IOException{
+    public String cuCtxCreate(GVirtusFrontend fe, Result res, int flags, int dev) throws IOException{
         
         Buffer b = new Buffer();
         b.AddInt(flags);
@@ -26,7 +26,7 @@ public class CudaDr_context {
         fe.Execute("cuCtxCreate", b, res);
         return getHex(res,8);
     }
-     public int cuCtxDestroy(Frontend fe, Result res, String ctx) throws IOException{
+     public int cuCtxDestroy(GVirtusFrontend fe, Result res, String ctx) throws IOException{
         
         Buffer b = new Buffer();
         b.Add(ctx);

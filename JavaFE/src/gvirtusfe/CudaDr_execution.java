@@ -15,7 +15,7 @@ public class CudaDr_execution {
 
     public CudaDr_execution() {}
 
-    void cuParamSetv(Frontend fe, Result res, String hfunc, int offset, String ptr, int numbytes) throws IOException {
+    void cuParamSetv(GVirtusFrontend fe, Result res, String hfunc, int offset, String ptr, int numbytes) throws IOException {
     
         Buffer b = new Buffer();
         b.AddInt(offset);
@@ -27,7 +27,7 @@ public class CudaDr_execution {
         fe.Execute("cuParamSetv",b,res);
         
     }    
-    void cuParamSeti(Frontend FE, Result res, String hfunc, int offset, int value) throws IOException {
+    void cuParamSeti(GVirtusFrontend FE, Result res, String hfunc, int offset, int value) throws IOException {
         
         Buffer b = new Buffer();
         b.AddInt(offset);
@@ -36,7 +36,7 @@ public class CudaDr_execution {
         FE.Execute("cuParamSeti",b,res);
     }
 
-    void cuParamSetSize(Frontend FE, Result res, String hfunc, int numbytes) throws IOException {
+    void cuParamSetSize(GVirtusFrontend FE, Result res, String hfunc, int numbytes) throws IOException {
 
         Buffer b = new Buffer();
         b.AddInt(numbytes);
@@ -44,7 +44,7 @@ public class CudaDr_execution {
         FE.Execute("cuParamSetSize", b, res);
     }
     
-    void cuFuncSetBlockShape(Frontend FE, Result res, String hfunc,int x, int y, int z) throws IOException {
+    void cuFuncSetBlockShape(GVirtusFrontend FE, Result res, String hfunc,int x, int y, int z) throws IOException {
 
         Buffer b = new Buffer();
         b.AddInt(x);
@@ -54,7 +54,7 @@ public class CudaDr_execution {
         FE.Execute("cuFuncSetBlockShape", b, res);
     }
     
- void cuFuncSetSharedSize(Frontend FE, Result res, String hfunc, int bytes) throws IOException {
+ void cuFuncSetSharedSize(GVirtusFrontend FE, Result res, String hfunc, int bytes) throws IOException {
 
         Buffer b = new Buffer();
         byte[] bits = this.intToByteArray(bytes);
@@ -65,7 +65,7 @@ public class CudaDr_execution {
         FE.Execute("cuFuncSetSharedSize", b, res);
     } 
  
-    void cuLaunchGrid(Frontend FE, Result res, String hfunc, int grid_width, int grid_height) throws IOException {
+    void cuLaunchGrid(GVirtusFrontend FE, Result res, String hfunc, int grid_width, int grid_height) throws IOException {
 
         Buffer b = new Buffer();
         b.AddInt(grid_width);

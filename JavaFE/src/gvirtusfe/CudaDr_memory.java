@@ -17,7 +17,7 @@ public class CudaDr_memory {
     public CudaDr_memory() {
     }
 
-    String cuMemAlloc(Frontend fe, Result res, long size) throws IOException{
+    String cuMemAlloc(GVirtusFrontend fe, Result res, long size) throws IOException{
 
         Buffer b = new Buffer();
         byte[] bits = this.longToByteArray(size);
@@ -43,7 +43,7 @@ public class CudaDr_memory {
     }
     
         
-    void cuMemcpyHtoD(Frontend fe, Result res, String dst, float[] src, int count) throws IOException {
+    void cuMemcpyHtoD(GVirtusFrontend fe, Result res, String dst, float[] src, int count) throws IOException {
         
         Buffer b = new Buffer();
          byte[] bits = this.longToByteArray(count);
@@ -60,7 +60,7 @@ public class CudaDr_memory {
     }   
 
     
-    float[] cuMemcpyDtoH(Frontend fe, Result res, String srcDevice, long ByteCount) throws IOException {
+    float[] cuMemcpyDtoH(GVirtusFrontend fe, Result res, String srcDevice, long ByteCount) throws IOException {
     
         Buffer b = new Buffer();
         b.Add(srcDevice);
@@ -83,7 +83,7 @@ public class CudaDr_memory {
 
     }
     
-    void cuMemFree(Frontend fe, Result res, String ptr) throws IOException{
+    void cuMemFree(GVirtusFrontend fe, Result res, String ptr) throws IOException{
         Buffer b = new Buffer();
         b.Add(ptr);
         fe.Execute("cuMemFree", b, res);

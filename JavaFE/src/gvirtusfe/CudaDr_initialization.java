@@ -16,7 +16,7 @@ public class CudaDr_initialization {
     public CudaDr_initialization() {
     }
     
-    public int cuInit(Frontend fe,Result res, int flags) throws IOException{
+    public int cuInit(GVirtusFrontend fe,Result res, int flags) throws IOException{
         Buffer b = new Buffer();
         b.AddInt(flags);
         fe.Execute("cuInit",b,res);

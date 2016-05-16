@@ -44,7 +44,6 @@ public class CudaDr_context {
             array[i]=bit;
         }
         String hex = DatatypeConverter.printHexBinary(array);
-        System.out.println(hex);
         return hex;
     }
     

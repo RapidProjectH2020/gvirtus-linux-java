@@ -18,9 +18,9 @@ import java.nio.file.Paths;
  */
 
 public class GVirtuSFE {
-    
+        
     static String ip="127.0.0.1"; //change localhost with remote host if necessary
-    static int port = 9992;
+    static int port = 9991;
     
     public static void main(String[] args) throws IOException {
        
@@ -36,8 +36,7 @@ public class GVirtuSFE {
         return data;
     }
     
-    
-    
+
     static String readFile(String path, Charset encoding) throws IOException {
       byte[] encoded = Files.readAllBytes(Paths.get(path));
       return new String(encoded, encoding);
@@ -55,17 +54,15 @@ public class GVirtuSFE {
         int device = dr.cuDeviceGet(FE, res, CUdevice);
         int numberofdevice = dr.cuDeviceGetCount(FE, res);
         int[] computeCapability = dr.cuDeviceComputeCapability(FE, res, device);
-        System.out.println("computeCapability is "+computeCapability[0]+"."+computeCapability[1]);
+        System.out.println("GPU Device has "+computeCapability[0]+"."+computeCapability[1]+" compute capability");
         int GPUoverlap= dr.cuDeviceGetAttribute(FE, res, 15, device);
         System.out.println("GPUOverlap is "+GPUoverlap);
         String name = dr.cuDeviceGetName(FE, res, 255,device );
         System.out.println("Device name is "+name);
         long totalMem = dr.cuDeviceTotalMem(FE, res, device);
-        System.out.println("Total mem is "+totalMem);
+        System.out.println("Total amount of global memory: "+totalMem+" bytes");
         CudaDr_context ctx = new CudaDr_context();
         String context = ctx.cuCtxCreate(FE, res, 0, 0);
-        System.out.println("Context pointer is "+context);
-        
         String p = "/src/gvirtusfe/matrixMul_kernel64.ptx";
         Path currentRelativePath = Paths.get("");
         String s = currentRelativePath.toAbsolutePath().toString();
@@ -92,8 +89,7 @@ public class GVirtuSFE {
         CudaDr_module dr_mod = new CudaDr_module();
 
         String cmodule = dr_mod.cuModuleLoadDataEx(FE, res, ptxSource, jitNumOptions, jitOptions, jitOptVals0, jitOptVals1, jitOptVals2);
-        String cfunction = dr_mod.cuModuleGetFunction(FE, res, cmodule, "matrixMul_bs16_64bit");
-        System.out.println("pointer cfunction " + cfunction);
+        String cfunction = dr_mod.cuModuleGetFunction(FE, res, cmodule, "matrixMul_bs32_32bit");
 
         // allocate host memory for matrices A and B
         int block_size = 32; // larger block size is for Fermi and above
@@ -104,7 +100,6 @@ public class GVirtuSFE {
         int WC = WB;  // Matrix C width 
         int HC = HA;  // Matrix C height
         int size_A = WA * HA;
-
         int mem_size_A = Float.SIZE/8 * size_A;
         float[] h_A = new float[size_A];
         int size_B = WB * HB;
@@ -124,17 +119,60 @@ public class GVirtuSFE {
         
         //allocate device memory for result
         long size_C = WC * HC;
+        float[] h_C = new float[WC * HC];
         long mem_size_C = Float.SIZE/8 * size_C;
         String d_C;
-        d_C = dr_mem.cuMemAlloc(FE, res, size_C);
+        d_C = dr_mem.cuMemAlloc(FE, res, mem_size_C); 
         
+        dim3 block = new dim3(block_size, block_size, 1);
+        dim3 grid = new dim3(WC/block_size, HC/block_size, 1);
+
+	int offset = 0;
+
+        int sizeOf_C = Long.SIZE/8;
+        int sizeOf_B = Long.SIZE/8;
+        int sizeOf_A = Long.SIZE/8;
+
+	// setup execution parameters
+        CudaDr_execution dr_exe = new CudaDr_execution();
         
+	dr_exe.cuParamSetv(FE, res, cfunction, offset, d_C, sizeOf_C);
+	offset += sizeOf_C;
+
+	dr_exe.cuParamSetv(FE, res, cfunction, offset, d_A, sizeOf_A);
+	offset += sizeOf_A;
+
+	dr_exe.cuParamSetv(FE, res, cfunction, offset, d_B, sizeOf_B);
+	offset += sizeOf_B;
+
+	int Matrix_Width_A = WA;
+	int Matrix_Width_B = WB;
+        int sizeof_Matrix_Width_A = Integer.SIZE/8;
+        int sizeof_Matrix_Width_B = Integer.SIZE/8;
+        dr_exe.cuParamSeti(FE, res, cfunction, offset, Matrix_Width_A);
+	offset += sizeof_Matrix_Width_A;
+	dr_exe.cuParamSeti(FE, res, cfunction, offset, Matrix_Width_B);
+	offset += sizeof_Matrix_Width_B;
+        dr_exe.cuParamSetSize(FE, res, cfunction, offset);
+        dr_exe.cuFuncSetBlockShape(FE, res, cfunction, block_size, block_size, grid.z);
+        dr_exe.cuFuncSetSharedSize(FE, res, cfunction, 2*block_size*block_size*(Float.SIZE/8));
+        dr_exe.cuLaunchGrid(FE, res, cfunction, grid.x, grid.y);
+        h_C= dr_mem.cuMemcpyDtoH(FE, res, d_C, mem_size_C);
+        boolean correct = true;
+        System.out.println("Checking computed result for correctness...");
+        for (int i =0; i< WC*HC; i++){
+            if (Math.abs(h_C[i] - (WA * valB)) > 1e-5){
+                System.out.println("Error!!!!");
+                correct= false;
+            }
+        }
+        System.out.println(correct ? "Result = PASS" : "Result = FAIL");
         
-        
+        dr_mem.cuMemFree(FE, res, d_A);
+        dr_mem.cuMemFree(FE, res, d_B);
+        dr_mem.cuMemFree(FE, res, d_C);
         ctx.cuCtxDestroy(FE, res, context);
-        
-        
-        
+       
     }
     
     public static void deviceQuery() throws IOException{
@@ -206,3 +244,4 @@ public class GVirtuSFE {
         
     }
 }
+

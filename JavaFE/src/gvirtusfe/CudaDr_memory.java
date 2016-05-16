@@ -39,7 +39,6 @@ public class CudaDr_memory {
             array[i]=bit;
         }
         String hex = DatatypeConverter.printHexBinary(array);
-        System.out.println(hex);
         return hex;
     }
     
@@ -58,9 +57,52 @@ public class CudaDr_memory {
         b.Add(src);
         fe.Execute("cuMemcpyHtoD", b, res);
     
+    }   
+
+    
+    float[] cuMemcpyDtoH(Frontend fe, Result res, String srcDevice, long ByteCount) throws IOException {
+    
+        Buffer b = new Buffer();
+        b.Add(srcDevice);
+        
+        byte[] bits = this.longToByteArray(ByteCount);
+           for (int i =0; i< bits.length;i++){
+               b.AddByte(bits[i] & 0xFF);
+        }
+        fe.Execute("cuMemcpyDtoH", b, res);
+        for (int i =0 ; i<= 7;i++){
+            byte bb = res.getInput_stream().readByte();
+        }   
+        int sizeType = 98304;
+        float[] result = new float[sizeType/4];
+        for (int i =0; i<sizeType/4;i++){
+            result[i]= getFloat(res);
+        }
+    
+        return result;
+
+    }
+    
+    void cuMemFree(Frontend fe, Result res, String ptr) throws IOException{
+        Buffer b = new Buffer();
+        b.Add(ptr);
+        fe.Execute("cuMemFree", b, res);
+    
+    }
+    
+    
+    private float getFloat (Result res) throws IOException{
+        
+        byte bytes []= new byte[4];
+        for (int i =3; i>= 0;i--){
+            bytes[i]= res.getInput_stream().readByte();
+        }
+        String output = javax.xml.bind.DatatypeConverter.printHexBinary(bytes);
+        Long i = Long.parseLong(output, 16);
+        Float f = Float.intBitsToFloat(i.intValue());
+        return f;
     }    
-        
-        
+     
      public byte[] longToByteArray(long value) {
         return new byte[] {
             (byte) value,

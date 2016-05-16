@@ -18,7 +18,6 @@ public class CudaDr_module {
         Buffer b = new Buffer();
         str = str +"\0";
         long size = str.length();
-        System.out.println("size str" + str.length());
         byte[] bits = this.longToByteArray(size);
 
         for (int i = 0; i < bits.length; i++) {
@@ -50,7 +49,6 @@ public class CudaDr_module {
     //addStringForArgument
     ptxSource = ptxSource +"\0";
     long sizePtxSource = ptxSource.length();
-    System.out.println("size " + ptxSource.length());
     long size = sizePtxSource;
     byte[] bits = this.longToByteArray(size);
     
@@ -101,7 +99,6 @@ public class CudaDr_module {
             array[i]=bit;
         }
         String hex = DatatypeConverter.printHexBinary(array);
-        System.out.println(hex);
         return hex;
     }
     public byte[] longToByteArray(long value) {

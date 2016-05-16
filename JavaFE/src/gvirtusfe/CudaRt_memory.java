@@ -51,7 +51,6 @@ public class CudaRt_memory {
             array[i]=bit;
         }
         String hex = DatatypeConverter.printHexBinary(array);
-        System.out.println(hex);
         return hex;
     }
 }

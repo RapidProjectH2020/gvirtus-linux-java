@@ -59,7 +59,6 @@ public final class Frontend {
             this.in.readByte();
             this.in.readByte();
             res.setExit_code(message);
-            System.out.println("Exit code of last function is: "+message);
             int sizes = (int) this.in.readByte();
             res.setSizeBuffer(sizes);
             for (int i =0 ; i< 7; i++) this.in.readByte();

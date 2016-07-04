@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="95">
+<configurationDescriptor version="97">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="backend" name="0">
+      <df name=".deps">
+      </df>
       <in>CudaDrBackend.cpp</in>
       <in>CudaDrBackend.h</in>
       <in>CudaDrHandler.cpp</in>
@@ -19,6 +21,8 @@
       <in>main.cpp</in>
     </df>
     <df root="frontend" name="1">
+      <df name=".deps">
+      </df>
       <in>CudaDr.cpp</in>
       <in>CudaDr.h</in>
       <in>CudaDrFrontend.cpp</in>
@@ -44,13 +48,13 @@
       </toolsSet>
       <compile>
         <compiledirpicklist>
-          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
           <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
         </compiledirpicklist>
         <compiledir>${AUTO_FOLDER}</compiledir>
         <compilecommandpicklist>
-          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
           <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
         </compilecommandpicklist>
         <compilecommand>${AUTO_COMPILE}</compilecommand>
       </compile>

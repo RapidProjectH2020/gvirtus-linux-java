@@ -17,17 +17,17 @@ import java.net.Socket;
 
 public final class Frontend {
 	private static Frontend frontend;
-	String serverIpAddress;
-	int port;
+	static String serverIpAddress;
+	static int port;
 	Socket socket, clientSocket;
 	static DataOutputStream outputStream;
 	static DataInputStream in;
 	static int resultBufferSize;
 
-	private Frontend() {
+	private Frontend(String serverIpAddress, int port) {
 
-		this.serverIpAddress = "localhost";
-		this.port = 9991;
+		Frontend.serverIpAddress = serverIpAddress;
+		Frontend.port = port;
 		try {
 			socket = new Socket(serverIpAddress, port);
 			outputStream = new DataOutputStream(socket.getOutputStream());
@@ -38,9 +38,9 @@ public final class Frontend {
 
 	}
 
-	public static Frontend getFrontend() {
+	public static Frontend getFrontend(String serverIpAddress, int port) {
 		if (frontend == null) {
-			frontend = new Frontend();
+			frontend = new Frontend(serverIpAddress,port);
 		}
 		return frontend;
 	}

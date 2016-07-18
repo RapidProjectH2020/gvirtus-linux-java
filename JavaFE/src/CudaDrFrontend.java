@@ -3,9 +3,9 @@ import java.io.IOException;
 
 public class CudaDrFrontend {
 
-	public CudaDrFrontend() {
+	public CudaDrFrontend(String serverIpAddress ,int port) {
 
-		Frontend.getFrontend();
+		Frontend.getFrontend(serverIpAddress,port);
 
 	}
 

@@ -31,7 +31,7 @@ public class MainApplication {
 	
 	public static void deviceQuery() throws IOException {
 
-		CudaRtFrontend runtime = new CudaRtFrontend();
+		CudaRtFrontend runtime = new CudaRtFrontend("193.205.230.23",9991);
 		System.out.println("Starting...\nCUDA Device Query (Runtime API) version (CUDART static linking)\n\n");
 		int deviceCount = runtime.cudaGetDeviceCount();
 		//if (res.getExit_code() != 0) {
@@ -125,7 +125,7 @@ public class MainApplication {
 	}
 	public static void matrixMul(int widthA,int heightA,int widthB) throws IOException {
 
-	CudaDrFrontend driver = new CudaDrFrontend();
+	CudaDrFrontend driver = new CudaDrFrontend("193.205.230.23",9991);
 	
 	long time1, time2;
 	System.out.println("matrixMulDrv (Driver API)");

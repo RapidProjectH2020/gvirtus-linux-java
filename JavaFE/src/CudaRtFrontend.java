@@ -2,9 +2,9 @@ import java.io.IOException;
 
 public class CudaRtFrontend {
 	
-	public CudaRtFrontend() {
+	public CudaRtFrontend(String serverIpAddress, int port) {
 
-		Frontend.getFrontend();
+		Frontend.getFrontend( serverIpAddress,  port);
 
 	}
 

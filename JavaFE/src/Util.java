@@ -80,4 +80,11 @@ public final class Util {
 	    public static final int LONG = Long.SIZE / 8;
 	    public static final int DOUBLE = Double.SIZE / 8;
 	}
+	
+	public static class ExitCode {
+		public static int exit_code=1;
+		public static int getExit_code() { return exit_code;}
+		public static void setExit_code( int exitCode) { exit_code = exitCode; }
+	}
+	
 }

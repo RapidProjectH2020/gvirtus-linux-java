@@ -22,7 +22,8 @@ public class CudaRtFrontend {
 		Buffer.clear();
 		Buffer.AddPointer(0);
 		String outputbuffer = "";
-		 Execute("cudaGetDeviceCount" );
+		int exitc = Execute("cudaGetDeviceCount" );
+		Util.ExitCode.setExit_code(exitc);
 		int sizeType = Frontend.in.readByte();
 		for (int i = 0; i < 7; i++)
 			Frontend.in.readByte();
@@ -50,7 +51,8 @@ public class CudaRtFrontend {
 		Buffer.AddInt(device);
 		Buffer.AddInt(peers);
 		String outputbuffer = "";
-		 Execute("cudaDeviceCanAccessPeer" );
+		int exitc = Execute("cudaDeviceCanAccessPeer" );
+		Util.ExitCode.setExit_code(exitc);
 		//  ExecuteMultiThread("cudaDeviceCanAccessPeer",b, );
 		int sizeType = Frontend.in.readByte();
 		for (int i = 0; i < 7; i++)
@@ -78,7 +80,8 @@ public class CudaRtFrontend {
 		Buffer .clear();
 		Buffer.AddPointer(0);
 		String outputbuffer = "";
-		 Execute("cudaDriverGetVersion" );
+		int exitc = Execute("cudaDriverGetVersion" );
+		Util.ExitCode.setExit_code(exitc);
 		//  ExecuteMultiThread("cudaDriverGetVersion",b, );
 		int sizeType = Frontend.in.readByte();
 		for (int i = 0; i < 7; i++)
@@ -107,7 +110,8 @@ public class CudaRtFrontend {
 		Buffer .clear();
 		Buffer.AddPointer(0);
 		String outputbuffer = "";
-		 Execute("cudaRuntimeGetVersion" );
+		int exitc = Execute("cudaRuntimeGetVersion" );
+		Util.ExitCode.setExit_code(exitc);
 		//  ExecuteMultiThread("cudaRuntimeGetVersion",b, );
 		int sizeType = Frontend.in.readByte();
 		for (int i = 0; i < 7; i++)
@@ -134,7 +138,8 @@ public class CudaRtFrontend {
 
 		Buffer .clear();
 		Buffer.Add(device);
-		 Execute("cudaSetDevice" );
+		int exitc = Execute("cudaSetDevice" );
+		Util.ExitCode.setExit_code(exitc);
 		//  ExecuteMultiThread("cudaSetDevice",b, );
 		return 0;
 	}
@@ -145,7 +150,8 @@ public class CudaRtFrontend {
 		Buffer.AddInt(error);
 		String outbuffer = "";
 		StringBuilder output = new StringBuilder();
-		 Execute("cudaGetErrorString" );
+		int exitc = Execute("cudaGetErrorString" );
+		Util.ExitCode.setExit_code(exitc);
 		int sizeType = Frontend.in.readByte();
 		// System.out.print("sizeType " + sizeType);
 
@@ -173,8 +179,8 @@ public class CudaRtFrontend {
 
 	public void cudaDeviceReset() throws IOException {
 		Buffer .clear();
-		 Execute("cudaDeviceReset" );
-
+		int exitc = Execute("cudaDeviceReset" );
+		Util.ExitCode.setExit_code(exitc);
 	}
 
 	public CudaDeviceProp cudaGetDeviceProperties( int device) throws IOException {
@@ -185,7 +191,8 @@ public class CudaRtFrontend {
 
 		Buffer.AddStruct(struct);
 		Buffer.AddInt(device);
-		 Execute("cudaGetDeviceProperties" );
+		int exitc = Execute("cudaGetDeviceProperties" );
+		Util.ExitCode.setExit_code(exitc);
 		for (int i = 0; i < 8; i++) {
 			Frontend.in.readByte();
 		}

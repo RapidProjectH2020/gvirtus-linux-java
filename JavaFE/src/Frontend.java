@@ -62,15 +62,14 @@ public final class Frontend {
 		for (int i = 0; i < bytes2.length; i++) {
 			outputStream.write(bytes2[i] & 0xFF);
 		}
-		// int message = in.readByte(); // use this for exitcode of single routine
-		in.readByte();
+		int message = in.readByte(); // use this for exitcode of single routine
 		in.readByte();
 		in.readByte();
 		in.readByte();
 		resultBufferSize = (int) in.readByte();
 		for (int i = 0; i < 7; i++)
 			in.readByte();
-		return 0;
+		return message;
 
 	}
 

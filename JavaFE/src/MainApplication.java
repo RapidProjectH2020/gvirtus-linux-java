@@ -34,13 +34,13 @@ public class MainApplication {
 		CudaRtFrontend runtime = new CudaRtFrontend("193.205.230.23",9991);
 		System.out.println("Starting...\nCUDA Device Query (Runtime API) version (CUDART static linking)\n\n");
 		int deviceCount = runtime.cudaGetDeviceCount();
-		//if (res.getExit_code() != 0) {
-		if (1 != 0) {
-			/*
-			System.out.println("cudaGetDeviceCount returned " + res.getExit_code() + " -> "
-					+ runtime.cudaGetErrorString(FE, res.getExit_code(), res));
+		if (Util.ExitCode.getExit_code() != 0) {
+
+			
+			System.out.println("cudaGetDeviceCount returned " + Util.ExitCode.getExit_code() + " -> "
+					+ runtime.cudaGetErrorString(Util.ExitCode.getExit_code()));
 			System.out.println("Result = FAIL\n");
-			return;*/
+			return;
 		}
 		if (deviceCount == 0) {
 			System.out.println("There are no available device(s) that support CUDA\n");

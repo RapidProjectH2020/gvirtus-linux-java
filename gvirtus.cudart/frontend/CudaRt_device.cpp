@@ -35,6 +35,26 @@ extern "C" __host__ cudaError_t CUDARTAPI cudaDeviceSetCacheConfig(cudaFuncCache
     return CudaRtFrontend::GetExitCode();
 }
 
+extern "C" __host__ cudaError_t CUDARTAPI cudaDeviceSetSharedMemConfig(cudaSharedMemConfig config) {
+    CudaRtFrontend::Prepare();
+    CudaRtFrontend::AddVariableForArguments(config);
+    CudaRtFrontend::Execute("cudaDeviceSetSharedMemConfig");
+    
+    return CudaRtFrontend::GetExitCode();
+}
+
+extern "C" __host__ cudaError_t CUDARTAPI cudaDeviceGetSharedMemConfig(cudaSharedMemConfig *pConfig) {
+    CudaRtFrontend::Prepare();
+    CudaRtFrontend::AddHostPointerForArguments(pConfig);
+    CudaRtFrontend::Execute("cudaDeviceGetSharedMemConfig");
+  if(CudaRtFrontend::Success()) {
+        memmove(pConfig, CudaRtFrontend::GetOutputHostPointer<cudaSharedMemConfig>(),sizeof(cudaSharedMemConfig));
+            //*pConfig = *(CudaRtFrontend::GetOutputHostPointer<cudaSharedMemConfig>());
+	}
+    return CudaRtFrontend::GetExitCode();
+}
+
+
 extern "C" __host__ cudaError_t CUDARTAPI cudaChooseDevice(int *device, const cudaDeviceProp *prop) {
     CudaRtFrontend::Prepare();
     CudaRtFrontend::AddHostPointerForArguments(device);

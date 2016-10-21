@@ -173,4 +173,17 @@ extern "C" cudaError_t cudaGraphicsResourceSetMapFlags(struct cudaGraphicsResour
     return CudaRtFrontend::GetExitCode();
 }
 
+//testing vpelliccia
+extern "C" cudaError_t cudaGraphicsSubResourceGetMappedArray(cudaArray_t* array, cudaGraphicsResource_t resource, unsigned int arrayIndex, unsigned int mipLevel) {
+    CudaRtFrontend::Prepare();
+    CudaRtFrontend::AddDevicePointerForArguments(resource);
+    CudaRtFrontend::AddVariableForArguments(arrayIndex);    
+    CudaRtFrontend::AddVariableForArguments(mipLevel);
+    CudaRtFrontend::Execute("cudaGraphicsSubResourceGetMappedArray");
+    if (CudaRtFrontend::Success()) {
+        *array = *(CudaRtFrontend::GetOutputHostPointer<cudaArray_t>());
+    }
+    return CudaRtFrontend::GetExitCode();
+}
+
 #endif

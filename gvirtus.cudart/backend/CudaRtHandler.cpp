@@ -275,6 +275,8 @@ void CudaRtHandler::Initialize() {
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(DeviceReset));
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(DeviceSynchronize));
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(DeviceSetCacheConfig));
+    mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(DeviceSetSharedMemConfig));
+    mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(DeviceGetSharedMemConfig));
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(DeviceSetLimit));
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(DeviceCanAccessPeer));
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(DeviceDisablePeerAccess));
@@ -368,7 +370,7 @@ void CudaRtHandler::Initialize() {
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(Memcpy2DToArray));
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(Malloc3DArray ));
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(MemcpyPeerAsync));
-
+    mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(MemGetInfo));
 
     
     /* CudaRtHandler_opengl */
@@ -379,7 +381,9 @@ void CudaRtHandler::Initialize() {
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(GraphicsUnmapResources));
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(GraphicsUnregisterResource));
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(GraphicsResourceSetMapFlags));
-    
+    mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(GraphicsSubResourceGetMappedArray));    
+
+
     /* CudaRtHandler_stream */
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(StreamCreate));
     mspHandlers->insert(CUDA_ROUTINE_HANDLER_PAIR(StreamDestroy));

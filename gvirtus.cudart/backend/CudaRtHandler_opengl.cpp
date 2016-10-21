@@ -36,6 +36,28 @@
 
 using namespace std;
 
+
+//testing vpelliccia
+CUDA_ROUTINE_HANDLER(GraphicsSubResourceGetMappedArray) {
+    try {
+    	cudaArray *array = NULL;
+        cudaGraphicsResource_t resource = (cudaGraphicsResource_t) input_buffer->Get<pointer_t>();
+        unsigned int arrayIndex = input_buffer->Get<unsigned int>();
+        unsigned int mipLevel = input_buffer->Get<unsigned int>();
+
+        cudaError_t exit_code = cudaGraphicsSubResourceGetMappedArray(&array,resource,arrayIndex,mipLevel);
+      
+	Buffer *out = new Buffer();
+        out->Add(&array);
+        return new Result(exit_code, out);
+    } catch (string e) {
+        cerr << e << endl;
+        return new Result(cudaErrorMemoryAllocation);
+    }
+    
+
+}
+
 CUDA_ROUTINE_HANDLER(GLSetGLDevice) {
     try {
         int device = input_buffer->Get<int>();

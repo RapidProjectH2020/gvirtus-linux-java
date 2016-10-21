@@ -130,6 +130,8 @@ CUDA_ROUTINE_HANDLER(SetValidDevices);
 CUDA_ROUTINE_HANDLER(DeviceReset);
 CUDA_ROUTINE_HANDLER(DeviceSynchronize);
 CUDA_ROUTINE_HANDLER(DeviceSetCacheConfig);
+CUDA_ROUTINE_HANDLER(DeviceSetSharedMemConfig);
+CUDA_ROUTINE_HANDLER(DeviceGetSharedMemConfig);
 CUDA_ROUTINE_HANDLER(DeviceSetLimit);
 CUDA_ROUTINE_HANDLER(DeviceCanAccessPeer); 
 CUDA_ROUTINE_HANDLER(DeviceEnablePeerAccess); 
@@ -138,10 +140,12 @@ CUDA_ROUTINE_HANDLER(IpcGetMemHandle);
 CUDA_ROUTINE_HANDLER(IpcGetEventHandle);
 CUDA_ROUTINE_HANDLER(IpcOpenEventHandle);
 CUDA_ROUTINE_HANDLER(IpcOpenMemHandle );
+
 //Testing
 CUDA_ROUTINE_HANDLER(OccupancyMaxActiveBlocksPerMultiprocessor); 
 CUDA_ROUTINE_HANDLER(DeviceGetAttribute );
 CUDA_ROUTINE_HANDLER(DeviceGetStreamPriorityRange);
+
 
 
 
@@ -209,7 +213,7 @@ CUDA_ROUTINE_HANDLER(Memcpy2DFromArray);
 CUDA_ROUTINE_HANDLER(Memcpy2DToArray);
 CUDA_ROUTINE_HANDLER(Malloc3DArray);
 CUDA_ROUTINE_HANDLER(MemcpyPeerAsync);
-
+CUDA_ROUTINE_HANDLER(MemGetInfo);
 
 /* CudaRtHandler_opengl */
 CUDA_ROUTINE_HANDLER(GLSetGLDevice);
@@ -219,6 +223,8 @@ CUDA_ROUTINE_HANDLER(GraphicsResourceGetMappedPointer);
 CUDA_ROUTINE_HANDLER(GraphicsUnmapResources);
 CUDA_ROUTINE_HANDLER(GraphicsUnregisterResource);
 CUDA_ROUTINE_HANDLER(GraphicsResourceSetMapFlags);
+CUDA_ROUTINE_HANDLER(GraphicsSubResourceGetMappedArray);
+
 
 /* CudaRtHandler_stream */
 CUDA_ROUTINE_HANDLER(StreamCreate);

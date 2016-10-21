@@ -918,3 +918,16 @@ CUDA_ROUTINE_HANDLER(Memset2D) {
         return new Result(cudaErrorMemoryAllocation);
     }
 }
+
+CUDA_ROUTINE_HANDLER(MemGetInfo) {
+    size_t *free = input_buffer->Assign<size_t>();
+    size_t *total = input_buffer->Assign<size_t>();
+
+    cudaError_t exit_code = cudaMemGetInfo(free,total);
+
+    Buffer *out = new Buffer();
+    out->Add(free);
+    out->Add(total);
+    return new Result((cudaError_t) exit_code, out);
+}
+

@@ -36,6 +36,36 @@ CUDA_ROUTINE_HANDLER(DeviceSetCacheConfig) {
     }
 }
 
+
+CUDA_ROUTINE_HANDLER(DeviceSetSharedMemConfig) {
+    try {
+        cudaSharedMemConfig config = input_buffer->Get<cudaSharedMemConfig>();
+        cudaError_t exit_code = cudaDeviceSetSharedMemConfig(config);
+        return new Result(exit_code);
+    } catch (string e) {
+        cerr << e << endl;
+        return new Result(cudaErrorMemoryAllocation);
+    }
+}
+
+//testing vpelliccia
+CUDA_ROUTINE_HANDLER(DeviceGetSharedMemConfig) {
+        cudaSharedMemConfig *config= input_buffer->Assign<cudaSharedMemConfig>();
+       // cudaSharedMemConfig pconfig;
+        cudaError_t exit_code = cudaDeviceGetSharedMemConfig(config);
+        Buffer *out = new Buffer();
+    try {
+        out->Add(config);
+    } catch (string e) {
+        cerr << e << endl;
+        return new Result(cudaErrorMemoryAllocation);
+    }
+
+    return new Result(exit_code, out);
+}
+
+
+
 CUDA_ROUTINE_HANDLER(DeviceSetLimit) {
     try {
         cudaLimit limit = input_buffer->Get<cudaLimit>();

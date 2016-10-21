@@ -868,6 +868,18 @@ extern "C" __host__ cudaError_t CUDARTAPI cudaMemset2D(void *devPtr, size_t pitc
     return CudaRtFrontend::GetExitCode();
 }
 
+extern "C" __host__ cudaError_t CUDARTAPI cudaMemGetInfo(size_t *free, size_t *total) {
+    CudaRtFrontend::Prepare();
+    CudaRtFrontend::AddHostPointerForArguments(free);
+    CudaRtFrontend::AddHostPointerForArguments(total);
+    CudaRtFrontend::Execute("cudaMemGetInfo");
+    if (CudaRtFrontend::Success()){
+        *free = *(CudaRtFrontend::GetOutputHostPointer<size_t > ());
+        *total = *(CudaRtFrontend::GetOutputHostPointer<size_t > ());
+    }
+    return CudaRtFrontend::GetExitCode();
+}
+
 extern "C" __host__ cudaError_t CUDARTAPI cudaMemset3D(cudaPitchedPtr pitchDevPtr, int value,
         cudaExtent extent) {
     // FIXME: implement

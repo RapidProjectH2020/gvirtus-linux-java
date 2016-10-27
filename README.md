@@ -32,6 +32,8 @@ In the directory “gvirtus-linux-java” there are four directories named “gv
 
     ./gvirtus-installer "GVIRTUS_PATH"
 
+--P.S. If you want to install GVirtuS 32 bit version ON X86_64 machine, you can launch the installer script "gvirtus-installer-32bit_onX86_64_machine". If your machine is 32 bit, you can use "gvirtus-installer" normally.
+
 To check your installation please check the following directories:
 
 Check GVIRTUS_PATH/lib for frontend and backend directories

@@ -72,6 +72,8 @@ Export the dynamic CUDA library:(typically /usr/local/cuda/lib64)
 
     export LD_LIBRARY_PATH=”<CUDA_PATH>/lib64” 
 
+--PS: If you are using GVirtuS-backend 32 bit: export LD_LIBRARY_PATH=”<CUDA_PATH>/lib”
+
 Execute application server gvirtus-backend with follow command:
 
     GVIRTUS_PATH/bin/gvirtus-backend
